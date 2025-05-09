@@ -37,62 +37,59 @@
             background: linear-gradient(135deg, #f5f7fa 0%, #c3cfe2 100%);
             color: #333;
             line-height: 1.6;
-            min-height: 100vh;
-            display: flex;
-            flex-direction: column;
         }
         
         .container {
-            width: 100%;
             max-width: 1200px;
             margin: 0 auto;
             padding: 20px;
-            flex: 1;
         }
         
         header {
             text-align: center;
-            padding: 30px 0;
-            margin-bottom: 20px;
+            padding: 40px 0;
+            margin-bottom: 40px;
+            position: relative;
         }
         
         header h1 {
-            font-size: clamp(1.8rem, 4vw, 2.5rem);
-            margin-bottom: 10px;
+            font-size: 2.5rem;
+            margin-bottom: 15px;
             color: #1e3c72;
             font-weight: bold;
         }
         
         header p {
-            font-size: clamp(1rem, 2vw, 1.3rem);
+            font-size: 1.3rem;
             color: #2a5298;
             font-family: 'Nazanin', Tahoma, sans-serif;
         }
         
         .buttons-container {
-            display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
-            gap: 20px;
-            margin: 30px 0;
-            width: 100%;
+            display: flex;
+            justify-content: center;
+            flex-wrap: wrap;
+            gap: 30px;
+            margin: 50px 0;
         }
         
         .btn {
-            width: 100%;
-            height: 110px;
+            flex: 1 1 250px;
+            max-width: 280px;
+            height: 120px;
             display: flex;
             flex-direction: column;
             align-items: center;
             justify-content: center;
-            padding: 15px;
+            padding: 20px;
             border: none;
-            border-radius: 12px;
+            border-radius: 15px;
             cursor: pointer;
             font-weight: bold;
-            font-size: clamp(1rem, 1.5vw, 1.2rem);
+            font-size: 1.2rem;
             color: white;
-            transition: all 0.3s ease;
-            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
+            transition: all 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+            box-shadow: 0 8px 20px rgba(0, 0, 0, 0.15);
             position: relative;
             overflow: hidden;
             text-align: center;
@@ -100,14 +97,14 @@
         }
         
         .btn i {
-            font-size: clamp(1.8rem, 3vw, 2.2rem);
-            margin-bottom: 8px;
+            font-size: 2.2rem;
+            margin-bottom: 12px;
             transition: all 0.3s ease;
         }
         
         .btn:hover {
-            transform: translateY(-5px);
-            box-shadow: 0 8px 20px rgba(0, 0, 0, 0.15);
+            transform: translateY(-8px);
+            box-shadow: 0 12px 25px rgba(0, 0, 0, 0.2);
         }
         
         .btn:hover i {
@@ -123,7 +120,7 @@
             height: 100%;
             background: rgba(255, 255, 255, 0.1);
             z-index: -1;
-            transition: all 0.3s ease;
+            transition: all 0.4s ease;
             opacity: 0;
         }
         
@@ -147,22 +144,22 @@
             flex-direction: column;
             align-items: center;
             justify-content: center;
-            padding: 15px;
+            padding: 20px;
             opacity: 0;
-            transform: scale(0.9);
-            transition: all 0.3s ease;
+            transform: scale(0.8);
+            transition: all 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275);
             text-align: center;
             color: white;
         }
         
         .btn-back p {
-            margin-bottom: 10px;
-            font-size: clamp(0.8rem, 1.2vw, 0.95rem);
-            line-height: 1.5;
+            margin-bottom: 15px;
+            font-size: 0.95rem;
+            line-height: 1.6;
         }
         
         .btn-back .modal-btn {
-            padding: 6px 20px;
+            padding: 8px 25px;
             background: rgba(255, 255, 255, 0.3);
             backdrop-filter: blur(5px);
             color: white;
@@ -171,7 +168,7 @@
             cursor: pointer;
             font-weight: bold;
             transition: all 0.3s ease;
-            font-size: clamp(0.8rem, 1.2vw, 0.9rem);
+            font-size: 0.9rem;
             text-decoration: none;
         }
         
@@ -186,7 +183,7 @@
         
         .btn.active .btn-content {
             opacity: 0;
-            transform: scale(0.9);
+            transform: scale(0.8);
         }
         
         .btn.active .btn-back {
@@ -195,7 +192,7 @@
         }
         
         .btn-1 {
-            background: linear-gradient(45deg, #11998e, #38ef7d);
+            background: linear-gradient(45deg, #8e2de2, #4a00e0);
         }
         
         .btn-2 {
@@ -207,7 +204,7 @@
         }
         
         .btn-4 {
-            background: linear-gradient(45deg, #8e2de2, #4a00e0);
+            background: linear-gradient(45deg, #11998e, #38ef7d);
         }
         
         .btn-5 {
@@ -217,69 +214,122 @@
         .btn-6 {
             background: linear-gradient(45deg, #25D366, #128C7E);
         }
+
+        /* استایل برای صفحه قیمت گذاری */
+        .pricing-page {
+            display: none;
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background-color: rgba(0,0,0,0.8);
+            z-index: 1000;
+            justify-content: center;
+            align-items: center;
+        }
+
+        .pricing-content {
+            background-color: white;
+            padding: 30px;
+            border-radius: 10px;
+            max-width: 500px;
+            width: 90%;
+            text-align: center;
+        }
+
+        .pricing-content h2 {
+            color: #1e3c72;
+            margin-bottom: 20px;
+        }
+
+        .pricing-content p {
+            font-size: 1.1rem;
+            margin-bottom: 20px;
+        }
+
+        .close-btn {
+            padding: 8px 20px;
+            background-color: #1e3c72;
+            color: white;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+        }
         
         footer {
             background: linear-gradient(90deg, #1e3c72 0%, #2a5298 100%);
             color: white;
-            padding: 30px 20px;
-            border-radius: 0;
+            padding: 40px 20px;
+            border-radius: 15px;
             text-align: center;
             box-shadow: 0 -5px 20px rgba(0, 0, 0, 0.1);
             font-family: 'Nazanin', Tahoma, Geneva, Verdana, sans-serif;
-            margin-top: auto;
         }
         
         footer h3 {
-            margin-bottom: 15px;
-            font-size: clamp(1.2rem, 2vw, 1.5rem);
+            margin-bottom: 20px;
+            font-size: 1.5rem;
         }
         
         footer p {
-            margin-bottom: 8px;
-            font-size: clamp(0.9rem, 1.5vw, 1.1rem);
+            margin-bottom: 10px;
+            font-size: 1.1rem;
         }
         
         .contact-info {
             display: flex;
             justify-content: center;
             flex-wrap: wrap;
-            gap: 15px;
-            margin: 15px 0;
+            gap: 20px;
+            margin: 20px 0;
         }
         
         .contact-item {
             display: flex;
             align-items: center;
-            gap: 8px;
-            font-size: clamp(0.9rem, 1.5vw, 1.1rem);
+            gap: 10px;
+            font-size: 1.1rem;
         }
         
         .contact-item i {
-            font-size: clamp(1rem, 1.5vw, 1.2rem);
+            font-size: 1.2rem;
         }
         
         .copyright {
-            margin-top: 20px;
-            padding-top: 15px;
+            margin-top: 30px;
+            padding-top: 20px;
             border-top: 1px solid rgba(255, 255, 255, 0.2);
-            font-size: clamp(0.8rem, 1.2vw, 0.95rem);
+            font-size: 0.95rem;
         }
         
-        @media (max-width: 600px) {
+        @media (max-width: 768px) {
+            header h1 {
+                font-size: 2rem;
+            }
+            
+            header p {
+                font-size: 1.1rem;
+            }
+            
             .buttons-container {
-                grid-template-columns: 1fr;
+                flex-direction: column;
+                align-items: center;
+                gap: 20px;
             }
             
             .btn {
-                height: 100px;
+                width: 100%;
+                max-width: 320px;
+                height: 110px;
             }
             
-            header {
-                padding: 20px 0;
+            .btn i {
+                font-size: 2rem;
             }
             
-            footer {
-                padding: 20px 15px;
+            .btn-back p {
+                font-size: 0.9rem;
             }
         }
     </style>
@@ -294,12 +344,12 @@
         <div class="buttons-container">
             <button class="btn btn-1" onclick="toggleButton(this, 1)">
                 <div class="btn-content">
-                    <i class="fab fa-telegram"></i>
-                    ورود به کانال تلگرام
+                    <i class="fas fa-chart-line"></i>
+                    قیمت گذاری آنلاین
                 </div>
                 <div class="btn-back">
-                    <p>ملک های فروشی و استیجاری در گنبد کاووس را ببینید</p>
-                    <a href="https://t.me/amlakkhanahmadi" target="_blank" class="modal-btn">ورود به کانال</a>
+                    <p>برای استفاده "رایگان" از این قابلیت اول باید عضو کانال شوید</p>
+                    <a href="#" class="modal-btn" onclick="event.preventDefault(); checkSubscription()">ورود به سامانه</a>
                 </div>
             </button>
             
@@ -327,12 +377,12 @@
             
             <button class="btn btn-4" onclick="toggleButton(this, 4)">
                 <div class="btn-content">
-                    <i class="fas fa-chart-line"></i>
-                    قیمت گذاری آنلاین
+                    <i class="fab fa-telegram"></i>
+                    ورود به کانال تلگرام
                 </div>
                 <div class="btn-back">
-                    <p>مشخصات ملک رو بدید و هوش مصنوعی ارزش ملکتون رو اعلام میکنه</p>
-                    <a href="#" class="modal-btn" onclick="event.preventDefault(); alert('این سرویس به زودی راه اندازی می‌شود')">ورود به سامانه</a>
+                    <p>ملک های فروشی و استیجاری در گنبد کاووس را ببینید</p>
+                    <a href="https://t.me/amlakkhanahmadi" target="_blank" class="modal-btn">ورود به کانال</a>
                 </div>
             </button>
             
@@ -357,6 +407,15 @@
                     <a href="https://wa.me/989116691558" target="_blank" class="modal-btn">شروع گفتگو</a>
                 </div>
             </button>
+        </div>
+    </div>
+
+    <!-- صفحه قیمت گذاری آنلاین -->
+    <div id="pricingPage" class="pricing-page">
+        <div class="pricing-content">
+            <h2>قیمت گذاری آنلاین ملک</h2>
+            <p>این صفحه تا چند روز آینده تاسیس می‌شود</p>
+            <button class="close-btn" onclick="closePricingPage()">بستن</button>
         </div>
     </div>
     
@@ -388,6 +447,7 @@
     
     <script>
         let activeButton = null;
+        let isSubscribed = false; // این متغیر وضعیت عضویت کاربر را ذخیره می‌کند
         
         function toggleButton(button, btnNumber) {
             // اگر دکمه ای فعال است و با دکمه فعلی یکی نیست، اول آن را غیرفعال کن
@@ -400,15 +460,6 @@
             
             // دکمه فعلی را ذخیره کن
             activeButton = button.classList.contains('active') ? button : null;
-            
-            // اگر دکمه 4 است، پیام را نشان بده
-            if (btnNumber === 4 && button.classList.contains('active')) {
-                setTimeout(() => {
-                    alert('این سرویس به زودی راه اندازی می‌شود');
-                    button.classList.remove('active');
-                    activeButton = null;
-                }, 500);
-            }
         }
         
         // با کلیک خارج از دکمه‌ها، دکمه فعال را غیرفعال کن
@@ -418,6 +469,32 @@
                 activeButton = null;
             }
         });
+
+        // تابع بررسی عضویت کاربر
+        function checkSubscription() {
+            // در حالت واقعی اینجا باید بررسی شود که کاربر واقعاً عضو کانال هست یا نه
+            // برای نمونه، ما از یک confirm ساده استفاده می‌کنیم
+            const userConfirmed = confirm("آیا در کانال تلگرام ما عضو هستید؟");
+            
+            if (userConfirmed) {
+                isSubscribed = true;
+                showPricingPage();
+            } else {
+                alert("لطفاً ابتدا در کانال تلگرام عضو شوید");
+                // کاربر را به کانال تلگرام هدایت کنیم
+                window.open('https://t.me/amlakkhanahmadi', '_blank');
+            }
+        }
+
+        // نمایش صفحه قیمت گذاری
+        function showPricingPage() {
+            document.getElementById('pricingPage').style.display = 'flex';
+        }
+
+        // بستن صفحه قیمت گذاری
+        function closePricingPage() {
+            document.getElementById('pricingPage').style.display = 'none';
+        }
     </script>
 </body>
 </html>
