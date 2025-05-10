@@ -71,6 +71,7 @@
             flex-wrap: wrap;
             gap: 30px;
             margin: 50px 0;
+            position: relative;
         }
         
         .btn {
@@ -193,6 +194,75 @@
         
         .btn-1 {
             background: linear-gradient(45deg, #8e2de2, #4a00e0);
+            position: relative;
+            animation: pulseBorder 2s infinite;
+            margin-top: 30px; /* افزایش فاصله از فلش */
+        }
+        
+        @keyframes pulseBorder {
+            0% {
+                box-shadow: 0 0 0 0 rgba(255, 0, 0, 0.7);
+            }
+            70% {
+                box-shadow: 0 0 0 12px rgba(255, 0, 0, 0);
+            }
+            100% {
+                box-shadow: 0 0 0 0 rgba(255, 0, 0, 0);
+            }
+        }
+        
+        .price-label-container {
+            position: absolute;
+            top: -60px; /* افزایش فاصله از دکمه */
+            width: 100%;
+            display: flex;
+            justify-content: center;
+            animation: fadeInOut 3s infinite;
+        }
+        
+        @keyframes fadeInOut {
+            0% { opacity: 0.7; }
+            50% { opacity: 1; }
+            100% { opacity: 0.7; }
+        }
+        
+        .price-label {
+            position: relative;
+            background-color: #ff0000;
+            color: white;
+            padding: 10px 25px;
+            border-radius: 30px;
+            font-weight: bold;
+            font-size: 1.1rem;
+            box-shadow: 0 4px 15px rgba(255, 0, 0, 0.4);
+            white-space: nowrap;
+            transform: translateY(0);
+            transition: all 0.3s ease;
+        }
+        
+        .price-label:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 6px 20px rgba(255, 0, 0, 0.5);
+        }
+        
+        .price-label::after {
+            content: '';
+            position: absolute;
+            top: 100%;
+            left: 50%;
+            transform: translateX(-50%);
+            width: 0;
+            height: 0;
+            border-left: 15px solid transparent;
+            border-right: 15px solid transparent;
+            border-top: 20px solid #ff0000;
+            animation: arrowPulse 2s infinite;
+        }
+        
+        @keyframes arrowPulse {
+            0% { transform: translateX(-50%) scale(1); }
+            50% { transform: translateX(-50%) scale(1.1); }
+            100% { transform: translateX(-50%) scale(1); }
         }
         
         .btn-2 {
@@ -261,6 +331,107 @@
             font-size: 0.95rem;
         }
         
+        /* Modal Styles */
+        .modal {
+            display: none;
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background-color: rgba(0, 0, 0, 0.7);
+            z-index: 1000;
+            justify-content: center;
+            align-items: center;
+        }
+        
+        .modal-content {
+            background-color: white;
+            padding: 30px;
+            border-radius: 15px;
+            width: 90%;
+            max-width: 400px;
+            text-align: center;
+            box-shadow: 0 5px 30px rgba(0, 0, 0, 0.3);
+            animation: modalFadeIn 0.3s ease;
+        }
+        
+        @keyframes modalFadeIn {
+            from {
+                opacity: 0;
+                transform: translateY(-50px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+        
+        .modal h3 {
+            color: #1e3c72;
+            margin-bottom: 20px;
+            font-size: 1.3rem;
+        }
+        
+        .modal p {
+            margin-bottom: 25px;
+            color: #333;
+            font-size: 1rem;
+        }
+        
+        .modal-buttons {
+            display: flex;
+            flex-direction: column;
+            gap: 15px;
+        }
+        
+        .modal-btn-primary, .modal-btn-secondary {
+            padding: 12px 25px;
+            border-radius: 50px;
+            font-weight: bold;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            text-decoration: none;
+            display: block;
+        }
+        
+        .modal-btn-primary {
+            background: linear-gradient(45deg, #11998e, #38ef7d);
+            color: white;
+            border: none;
+        }
+        
+        .modal-btn-primary:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
+        }
+        
+        .modal-btn-secondary {
+            background: transparent;
+            color: #1e3c72;
+            border: 2px solid #1e3c72;
+        }
+        
+        .modal-btn-secondary:hover {
+            background: rgba(30, 60, 114, 0.1);
+            transform: translateY(-2px);
+        }
+        
+        .modal-close {
+            position: absolute;
+            top: 15px;
+            left: 15px;
+            font-size: 1.5rem;
+            color: #888;
+            cursor: pointer;
+            transition: all 0.3s ease;
+        }
+        
+        .modal-close:hover {
+            color: #333;
+            transform: rotate(90deg);
+        }
+        
         @media (max-width: 768px) {
             header h1 {
                 font-size: 2rem;
@@ -289,6 +460,29 @@
             .btn-back p {
                 font-size: 0.9rem;
             }
+            
+            .price-label {
+                font-size: 1rem;
+                padding: 8px 20px;
+            }
+            
+            .price-label-container {
+                top: -50px;
+            }
+        }
+        
+        @media (max-width: 480px) {
+            .price-label {
+                font-size: 0.9rem;
+                padding: 6px 15px;
+                white-space: normal;
+                max-width: 90%;
+                text-align: center;
+            }
+            
+            .price-label-container {
+                top: -45px;
+            }
         }
     </style>
 </head>
@@ -300,14 +494,17 @@
         </header>
         
         <div class="buttons-container">
-            <button class="btn btn-1" onclick="toggleButton(this, 1)">
+            <div class="price-label-container">
+                <div class="price-label">قیمت گذاری ملک شما از طریق هوش مصنوعی</div>
+            </div>
+            <button class="btn btn-1" onclick="showPriceModal()">
                 <div class="btn-content">
                     <i class="fas fa-chart-line"></i>
                     قیمت گذاری آنلاین
                 </div>
                 <div class="btn-back">
                     <p>برای استفاده از این قابلیت روی دکمه زیر کلیک کنید</p>
-                    <a href="https://moris2288.github.io/qeymatsanj/" target="_blank" class="modal-btn">ورود به سامانه</a>
+                    <a href="http://qeymatyab.ir" target="_blank" class="modal-btn">ورود به سامانه</a>
                 </div>
             </button>
             
@@ -368,6 +565,19 @@
         </div>
     </div>
     
+    <!-- Price Modal -->
+    <div id="priceModal" class="modal">
+        <div class="modal-content">
+            <span class="modal-close" onclick="closeModal()">&times;</span>
+            <h3>توجه!</h3>
+            <p>این قابلیت رایگان است، به شرطی که در کانال تلگرام ما عضو باشید</p>
+            <div class="modal-buttons">
+                <a href="https://t.me/amlakkhanahmadi" target="_blank" class="modal-btn-primary">ورود به کانال تلگرام</a>
+                <a href="http://qeymatyab.ir" target="_blank" class="modal-btn-secondary">از قبل عضو هستم</a>
+            </div>
+        </div>
+    </div>
+    
     <footer>
         <div class="container">
             <h3>دپارتمان املاک</h3>
@@ -415,6 +625,22 @@
             if (activeButton && !activeButton.contains(event.target)) {
                 activeButton.classList.remove('active');
                 activeButton = null;
+            }
+        });
+        
+        // Modal Functions
+        function showPriceModal() {
+            document.getElementById('priceModal').style.display = 'flex';
+        }
+        
+        function closeModal() {
+            document.getElementById('priceModal').style.display = 'none';
+        }
+        
+        // Close modal when clicking outside
+        window.addEventListener('click', function(event) {
+            if (event.target === document.getElementById('priceModal')) {
+                closeModal();
             }
         });
     </script>
