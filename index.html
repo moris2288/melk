@@ -214,48 +214,6 @@
         .btn-6 {
             background: linear-gradient(45deg, #25D366, #128C7E);
         }
-
-        /* استایل برای صفحه قیمت گذاری */
-        .pricing-page {
-            display: none;
-            position: fixed;
-            top: 0;
-            left: 0;
-            width: 100%;
-            height: 100%;
-            background-color: rgba(0,0,0,0.8);
-            z-index: 1000;
-            justify-content: center;
-            align-items: center;
-        }
-
-        .pricing-content {
-            background-color: white;
-            padding: 30px;
-            border-radius: 10px;
-            max-width: 500px;
-            width: 90%;
-            text-align: center;
-        }
-
-        .pricing-content h2 {
-            color: #1e3c72;
-            margin-bottom: 20px;
-        }
-
-        .pricing-content p {
-            font-size: 1.1rem;
-            margin-bottom: 20px;
-        }
-
-        .close-btn {
-            padding: 8px 20px;
-            background-color: #1e3c72;
-            color: white;
-            border: none;
-            border-radius: 5px;
-            cursor: pointer;
-        }
         
         footer {
             background: linear-gradient(90deg, #1e3c72 0%, #2a5298 100%);
@@ -348,8 +306,8 @@
                     قیمت گذاری آنلاین
                 </div>
                 <div class="btn-back">
-                    <p>برای استفاده "رایگان" از این قابلیت اول باید عضو کانال شوید</p>
-                    <a href="#" class="modal-btn" onclick="event.preventDefault(); checkSubscription()">ورود به سامانه</a>
+                    <p>برای استفاده از این قابلیت روی دکمه زیر کلیک کنید</p>
+                    <a href="https://moris2288.github.io/qeymatsanj/" target="_blank" class="modal-btn">ورود به سامانه</a>
                 </div>
             </button>
             
@@ -409,15 +367,6 @@
             </button>
         </div>
     </div>
-
-    <!-- صفحه قیمت گذاری آنلاین -->
-    <div id="pricingPage" class="pricing-page">
-        <div class="pricing-content">
-            <h2>قیمت گذاری آنلاین ملک</h2>
-            <p>این صفحه تا چند روز آینده تاسیس می‌شود</p>
-            <button class="close-btn" onclick="closePricingPage()">بستن</button>
-        </div>
-    </div>
     
     <footer>
         <div class="container">
@@ -447,7 +396,6 @@
     
     <script>
         let activeButton = null;
-        let isSubscribed = false; // این متغیر وضعیت عضویت کاربر را ذخیره می‌کند
         
         function toggleButton(button, btnNumber) {
             // اگر دکمه ای فعال است و با دکمه فعلی یکی نیست، اول آن را غیرفعال کن
@@ -469,32 +417,6 @@
                 activeButton = null;
             }
         });
-
-        // تابع بررسی عضویت کاربر
-        function checkSubscription() {
-            // در حالت واقعی اینجا باید بررسی شود که کاربر واقعاً عضو کانال هست یا نه
-            // برای نمونه، ما از یک confirm ساده استفاده می‌کنیم
-            const userConfirmed = confirm("آیا در کانال تلگرام ما عضو هستید؟");
-            
-            if (userConfirmed) {
-                isSubscribed = true;
-                showPricingPage();
-            } else {
-                alert("لطفاً ابتدا در کانال تلگرام عضو شوید");
-                // کاربر را به کانال تلگرام هدایت کنیم
-                window.open('https://t.me/amlakkhanahmadi', '_blank');
-            }
-        }
-
-        // نمایش صفحه قیمت گذاری
-        function showPricingPage() {
-            document.getElementById('pricingPage').style.display = 'flex';
-        }
-
-        // بستن صفحه قیمت گذاری
-        function closePricingPage() {
-            document.getElementById('pricingPage').style.display = 'none';
-        }
     </script>
 </body>
 </html>
